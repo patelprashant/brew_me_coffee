@@ -1,6 +1,6 @@
-import 'package:brew_me_coffee/screens/auth/authentication.dart';
-import 'package:brew_me_coffee/screens/home/home.dart';
 import 'package:flutter/material.dart';
+
+import 'authentication/authentication.dart';
 
 class Wrapper extends StatelessWidget {
   @override
