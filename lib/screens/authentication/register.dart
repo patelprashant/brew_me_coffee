@@ -12,6 +12,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final AuthService _authService = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
   //text field state
   String email = "";
@@ -38,16 +39,20 @@ class _RegisterState extends State<Register> {
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 48.0),
         child: Form(
+          key: _formKey,
           child: Column(
             children: <Widget>[
               SizedBox(height: 24.0),
               TextFormField(
+                validator: (val) => val.isEmpty ? "Enter valid email" : null,
                 onChanged: (val) {
                   setState(() => email = val);
                 },
               ),
               SizedBox(height: 16.0),
               TextFormField(
+                validator: (val) =>
+                val.length < 6 ? "Enter the password 6+ chars long" : null,
                 onChanged: (val) {
                   setState(() => password = val);
                 },
@@ -56,8 +61,12 @@ class _RegisterState extends State<Register> {
               SizedBox(height: 16.0),
               RaisedButton(
                 onPressed: () async {
-                  print(email);
-                  print(password);
+                  if (_formKey.currentState.validate()) {
+                    print(email);
+                    print(password);
+                  } else {
+                    print("Form is not valid");
+                  }
 
 //                  dynamic result = await _authService.signInAnon();
 //                  if (result == null) {
