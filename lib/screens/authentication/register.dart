@@ -17,6 +17,7 @@ class _RegisterState extends State<Register> {
   //text field state
   String email = "";
   String password = "";
+  String error = "";
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class _RegisterState extends State<Register> {
                   setState(() => email = val);
                 },
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 12.0),
               TextFormField(
                 validator: (val) =>
                 val.length < 6 ? "Enter the password 6+ chars long" : null,
@@ -58,29 +59,28 @@ class _RegisterState extends State<Register> {
                 },
                 obscureText: true,
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 12.0),
               RaisedButton(
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
-                    print(email);
-                    print(password);
-                  } else {
-                    print("Form is not valid");
+                    dynamic result =
+                    _authService.registerWithEmailAndPwd(email, password);
+                    if (result == null) {
+                      setState(() =>
+                      error = "Please supply valid email and password");
+                    }
                   }
-
-//                  dynamic result = await _authService.signInAnon();
-//                  if (result == null) {
-//                    print('Error signing in anon');
-//                  } else {
-//                    print('Signing in anon');
-//                    print(result.uid);
-//                  }
                 },
                 color: Colors.orangeAccent,
                 child: Text(
                   'Register',
                   style: TextStyle(color: Colors.black),
                 ),
+              ),
+              SizedBox(height: 12.0),
+              Text(
+                error,
+                style: TextStyle(color: Colors.red, fontSize: 16.0),
               ),
             ],
           ),
@@ -89,16 +89,3 @@ class _RegisterState extends State<Register> {
     );
   }
 }
-
-//RaisedButton(
-//child: Text('Sign in Anon'),
-//onPressed: () async {
-//dynamic result = await _authService.signInAnon();
-//if (result == null) {
-//print('Error signing in anon');
-//} else {
-//print('Signing in anon');
-//print(result.uid);
-//}
-//},
-//)
