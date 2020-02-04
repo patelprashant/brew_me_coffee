@@ -2,6 +2,10 @@ import 'package:brew_me_coffee/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
+  final Function toggleSignIn;
+
+  const SignIn({this.toggleSignIn});
+
   @override
   _SignInState createState() => _SignInState();
 }
@@ -21,6 +25,15 @@ class _SignInState extends State<SignIn> {
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         title: Text('Sign in to Brew'),
+        actions: <Widget>[
+          FlatButton.icon(
+            onPressed: () {
+              widget.toggleSignIn();
+            },
+            icon: Icon(Icons.person),
+            label: Text('Register'),
+          )
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 48.0),

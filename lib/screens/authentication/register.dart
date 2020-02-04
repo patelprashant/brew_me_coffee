@@ -2,6 +2,10 @@ import 'package:brew_me_coffee/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
+  final Function toggleSignIn;
+
+  const Register({this.toggleSignIn});
+
   @override
   _RegisterState createState() => _RegisterState();
 }
@@ -20,7 +24,16 @@ class _RegisterState extends State<Register> {
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
-        title: Text('Sign Up to Brew'),
+        title: Text('Register with Brew'),
+        actions: <Widget>[
+          FlatButton.icon(
+            onPressed: () {
+              widget.toggleSignIn();
+            },
+            icon: Icon(Icons.person),
+            label: Text('Sign In'),
+          )
+        ],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 48.0),
@@ -56,7 +69,7 @@ class _RegisterState extends State<Register> {
                 },
                 color: Colors.orangeAccent,
                 child: Text(
-                  'Reister',
+                  'Register',
                   style: TextStyle(color: Colors.black),
                 ),
               ),
