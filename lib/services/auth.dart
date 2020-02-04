@@ -4,13 +4,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  //TODO: create user object based on FirebaseUser
-
+  //create user object based on FirebaseUser
   User _userFromFBUser(FirebaseUser fbUser) {
     return fbUser != null ? User(uid: fbUser.uid) : null;
   }
 
-  //TODO: sign in anon
+  //auth change user stream and map it to app user
+  Stream<User> get appUser {
+    return _auth.onAuthStateChanged.map(_userFromFBUser);
+  }
+
+  //sign in anon
   Future signInAnon() async {
     try {
       AuthResult result = await _auth.signInAnonymously();
