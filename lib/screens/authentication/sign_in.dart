@@ -28,7 +28,7 @@ class _SignInState extends State<SignIn> {
               print('Error signing in anon');
             } else {
               print('Signing in anon');
-              print(result);
+              print(result.uid);
             }
           },
         ),
