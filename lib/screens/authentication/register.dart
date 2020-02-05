@@ -53,7 +53,7 @@ class _RegisterState extends State<Register> {
               SizedBox(height: 12.0),
               TextFormField(
                 validator: (val) =>
-                val.length < 6 ? "Enter the password 6+ chars long" : null,
+                    val.length < 6 ? "Enter the password 6+ chars long" : null,
                 onChanged: (val) {
                   setState(() => password = val);
                 },
@@ -64,10 +64,10 @@ class _RegisterState extends State<Register> {
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     dynamic result =
-                    _authService.registerWithEmailAndPwd(email, password);
+                        _authService.registerWithEmailAndPwd(email, password);
                     if (result == null) {
                       setState(() =>
-                      error = "Please supply valid email and password");
+                          error = "Please supply valid email and password");
                     }
                   }
                 },
