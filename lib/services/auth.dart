@@ -29,7 +29,7 @@ class AuthService {
 //sign in with email and pwd
   Future emailSignIn(String email, String password) async {
     try {
-      AuthResult result = await _auth.createUserWithEmailAndPassword(
+      AuthResult result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser fbUser = result.user;
       return _userFromFBUser(fbUser);
