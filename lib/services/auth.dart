@@ -28,7 +28,7 @@ class AuthService {
 
 //TODO: sign in with email and pwd
 //register with email and pwd
-  Future registerWithEmailAndPwd(String email, String password) async {
+  Future emailRegistration(String email, String password) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
