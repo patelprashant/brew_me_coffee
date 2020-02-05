@@ -26,19 +26,7 @@ class AuthService {
     }
   }
 
-//sign in with email and pwd
-  Future emailSignIn(String email, String password) async {
-    try {
-      AuthResult result = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
-      FirebaseUser fbUser = result.user;
-      return _userFromFBUser(fbUser);
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
-  }
-
+//TODO: sign in with email and pwd
 //register with email and pwd
   Future emailRegistration(String email, String password) async {
     try {
