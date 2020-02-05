@@ -56,7 +56,7 @@ class _SignInState extends State<SignIn> {
               TextFormField(
                 decoration: txtInputDecoration.copyWith(hintText: "Password"),
                 validator: (val) =>
-                val.length < 6 ? "Enter the password 6+ chars long" : null,
+                    val.length < 6 ? "Enter the password 6+ chars long" : null,
                 onChanged: (val) {
                   setState(() => password = val);
                 },
@@ -67,10 +67,10 @@ class _SignInState extends State<SignIn> {
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     dynamic result =
-                    await _authService.emailSignIn(email, password);
+                        await _authService.emailSignIn(email, password);
                     if (result == null) {
                       setState(() =>
-                      error = "Couldn\'t Sign in with those credentials");
+                          error = "Couldn\'t Sign in with those credentials");
                     }
                   }
                 },
