@@ -1,4 +1,5 @@
 import 'package:brew_me_coffee/services/auth.dart';
+import 'package:brew_me_coffee/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -12,10 +13,12 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final AuthService _authService = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
   //text field state
   String email = "";
   String password = "";
+  String error = "";
 
   @override
   Widget build(BuildContext context) {
@@ -38,40 +41,49 @@ class _SignInState extends State<SignIn> {
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 24.0, horizontal: 48.0),
         child: Form(
+          key: _formKey,
           child: Column(
             children: <Widget>[
               SizedBox(height: 24.0),
               TextFormField(
+                decoration: txtInputDecoration,
+                validator: (val) => val.isEmpty ? "Enter valid email" : null,
                 onChanged: (val) {
                   setState(() => email = val);
                 },
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 12.0),
               TextFormField(
+                decoration: txtInputDecoration.copyWith(hintText: "Password"),
+                validator: (val) =>
+                val.length < 6 ? "Enter the password 6+ chars long" : null,
                 onChanged: (val) {
                   setState(() => password = val);
                 },
                 obscureText: true,
               ),
-              SizedBox(height: 16.0),
+              SizedBox(height: 12.0),
               RaisedButton(
                 onPressed: () async {
-                  print(email);
-                  print(password);
-
-//                  dynamic result = await _authService.signInAnon();
-//                  if (result == null) {
-//                    print('Error signing in anon');
-//                  } else {
-//                    print('Signing in anon');
-//                    print(result.uid);
-//                  }
+                  if (_formKey.currentState.validate()) {
+                    dynamic result =
+                    await _authService.emailSignIn(email, password);
+                    if (result == null) {
+                      setState(() =>
+                      error = "Couldn\'t Sign in with those credentials");
+                    }
+                  }
                 },
                 color: Colors.orangeAccent,
                 child: Text(
                   'Sign In',
                   style: TextStyle(color: Colors.black),
                 ),
+              ),
+              SizedBox(height: 12.0),
+              Text(
+                error,
+                style: TextStyle(color: Colors.red, fontSize: 16.0),
               ),
             ],
           ),

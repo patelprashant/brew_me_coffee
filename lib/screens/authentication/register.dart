@@ -1,4 +1,5 @@
 import 'package:brew_me_coffee/services/auth.dart';
+import 'package:brew_me_coffee/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -45,6 +46,7 @@ class _RegisterState extends State<Register> {
             children: <Widget>[
               SizedBox(height: 24.0),
               TextFormField(
+                decoration: txtInputDecoration,
                 validator: (val) => val.isEmpty ? "Enter valid email" : null,
                 onChanged: (val) {
                   setState(() => email = val);
@@ -52,8 +54,9 @@ class _RegisterState extends State<Register> {
               ),
               SizedBox(height: 12.0),
               TextFormField(
+                decoration: txtInputDecoration.copyWith(hintText: "Password"),
                 validator: (val) =>
-                    val.length < 6 ? "Enter the password 6+ chars long" : null,
+                val.length < 6 ? "Enter the password 6+ chars long" : null,
                 onChanged: (val) {
                   setState(() => password = val);
                 },
