@@ -19,8 +19,9 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 ## Snapshots of the app
+<!-- <img src="screenshots/coffee_01.png" width="50%">; -->
 
-![Registration Form](/screenshots/coffee_01.png)
+![Registration Form](/screenshots/coffee_01.png){:width="50%"}
 
 ![Form validation](/screenshots/coffee_03.png)
 
