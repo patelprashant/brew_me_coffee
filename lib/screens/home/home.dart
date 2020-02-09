@@ -6,6 +6,8 @@ import 'package:brew_me_coffee/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../res.dart';
+
 class Home extends StatelessWidget {
   final AuthService _authService = AuthService();
 
@@ -45,7 +47,14 @@ class Home extends StatelessWidget {
             )
           ],
         ),
-        body: BrewList(),
+        body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(Res.coffee_bg),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: BrewList()),
       ),
     );
   }
