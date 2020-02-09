@@ -20,10 +20,4 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Snapshots of the app
 
-![Registration Form](/screenshots/coffee_01.png)
-
-![Form validation](/screenshots/coffee_03.png)
-
-![List of orders](/screenshots/coffee_04.png)
-
-![Update user order](/screenshots/coffee_05.png)
+![Registration Form](/screenshots/coffee_01.png)  ![Form validation](/screenshots/coffee_03.png)  ![List of orders](/screenshots/coffee_04.png)  ![Update user order](/screenshots/coffee_05.png)
